@@ -10,7 +10,16 @@ public class StringUtils {
      * @return `stringToBePadded` flushed right by left-padding
      */
     public static String padLeft(String stringToBePadded, int amountOfPadding) {
-        return null;
+
+        String result = "";
+
+        for(int i = 0; i < amountOfPadding - stringToBePadded.length(); i++) {
+            result += " ";
+        }
+
+        result += stringToBePadded;
+
+        return result;
     }
 
     /**
@@ -19,7 +28,14 @@ public class StringUtils {
      * @return `stringToBePadded` flushed right by right-padding
      */
     public static String padRight(String stringToBePadded, int amountOfPadding) {
-        return null;
+
+        String result = stringToBePadded;
+
+        for(int i = 0; i < amountOfPadding - stringToBePadded.length(); i++) {
+            result += " ";
+        }
+
+        return result;
     }
 
     /**
@@ -28,7 +44,13 @@ public class StringUtils {
      * @return the string repeated and concatenated `n` times
      */
     public static String repeatString(String stringToBeRepeated, int numberOfTimeToRepeat) {
-        return null;
+
+        StringBuilder builder = new StringBuilder();
+        for(int i = 0; i < numberOfTimeToRepeat; i++) {
+            builder.append(stringToBeRepeated);
+        }
+
+        return builder.toString();
     }
 
     /**
@@ -36,7 +58,22 @@ public class StringUtils {
      * @return - true if string only contains alpha characters
      */
     public static Boolean isAlphaString(String string) {
-        return null;
+
+        Character[] characters = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+                                'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+
+
+        for(int i = 0; i < string.length(); i++){
+            Boolean isAlpha = false;
+            for(Character character : characters) {
+                if(character.equals(string.charAt(i))) isAlpha = true;
+                Character upper = Character.toUpperCase(character);
+                if(upper.equals(string.charAt(i))) isAlpha = true;
+                if(string.charAt(i) == ' ') isAlpha = true;
+            }
+            if(!isAlpha) return false;
+        }
+        return true;
     }
 
     /**
@@ -44,7 +81,19 @@ public class StringUtils {
      * @return - true if string only contains numeric characters
      */
     public static Boolean isNumericString(String string) {
-        return null;
+
+        Character[] numbers = {'1', '2','3','4','5','6','7','8','9','0'};
+
+
+        for(int i = 0; i < string.length(); i++){
+            Boolean isNum = false;
+            for(Character num : numbers) {
+                if(num.equals(string.charAt(i))) isNum = true;
+
+            }
+            if(!isNum) return false;
+        }
+        return true;
     }
 
     /**
@@ -52,6 +101,33 @@ public class StringUtils {
      * @return - true if string only contains special characters
      */
     public static Boolean isSpecialCharacterString(String string) {
-        return null;
+
+        Character[] characters = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+                'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+
+        Character[] numbers = {'1', '2','3','4','5','6','7','8','9','0'};
+
+        Boolean isAlpha = false;
+        Boolean isNum = false;
+
+        for(int i = 0; i < string.length(); i++){
+
+            for(Character character : characters) {
+                if(character.equals(string.charAt(i))) isAlpha = true;
+                Character upper = Character.toUpperCase(character);
+                if(upper.equals(string.charAt(i))) isAlpha = true;
+            }
+
+        }
+
+        for(int i = 0; i < string.length(); i++){
+            for(Character num : numbers) {
+                if(num.equals(string.charAt(i))) isNum = true;
+
+            }
+        }
+
+
+        return (!isAlpha && !isNum);
     }
 }
